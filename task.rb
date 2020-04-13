@@ -148,10 +148,10 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  def initialize(name:, age:, gender:)
-    @name = name
-    @age = age
-    @gender = gender
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+    @gender = params[:gender]
   end
 
   def info
@@ -198,8 +198,12 @@ end
 class Item
   # 以下を修正して下さい
 
-  def initialize(name)
+  def initialize(name:)
     @name = name
+  end
+  
+  def name
+    @name
   end
 end
 
@@ -211,12 +215,40 @@ end
 
 class UserQ20
   # 以下に回答を記載
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
+
+  def name
+    @name
+  end
+
+  def age
+    @age
+  end
 
 end
 
 class Zoo
   # 以下に回答を記載
+  def initialize(name:, entry_fee:)
+    @entry_fee = entry_fee
+  end
 
+  def info_entry_fee(user)
+    name = user.name
+    age = user.age
+    if age >= 0 && age <= 5
+      puts "#{name}さんの入場料金は #{@entry_fee[:infant]} 円です。"
+    elsif age >= 6 && age <= 12
+      puts "#{name}さんの入場料金は #{@entry_fee[:children]} 円です。"
+    elsif age >= 13 && age <= 64
+      puts "#{name}さんの入場料金は #{@entry_fee[:adult]} 円です。"
+    elsif age >= 65 && age <= 120
+      puts "#{name}さんの入場料金は #{@entry_fee[:senior]} 円です。"
+    end
+  end
 end
 
 
